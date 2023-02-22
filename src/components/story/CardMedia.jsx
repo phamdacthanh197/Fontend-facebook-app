@@ -2,9 +2,9 @@ import React from 'react';
 
 const CardMedia = ({ url, file , controls = true}) => {
   const image = (new RegExp(/[^\s]+(.*?).(jpg|jpeg|png|gif|jfif|JPG|JPEG|PNG|GIF)$/)).test(url) 
-  const isVideo = file?.type.includes('video');
-  const isImage = file?.type.includes('image');
-
+  const isVideo = file?.type?.includes('video');
+  const isImage = file?.type?.includes('image');
+  
   return (
     <>
       {!image && url && (
@@ -16,6 +16,7 @@ const CardMedia = ({ url, file , controls = true}) => {
 
       {isVideo && (
         <video
+          src={file.preview}
           controls
           style={{
             objectFit: 'cover',
@@ -24,13 +25,10 @@ const CardMedia = ({ url, file , controls = true}) => {
             position: 'absolute',
             top:  0
           }}
-        >
-          <source src={file.preview} type="video/mp4" />
-        </video>
+        />
       )}
       {isImage && (
         <img
-          // {...inputProps}
           style={{
             objectFit: 'cover',
             height: '100%',
@@ -46,4 +44,4 @@ const CardMedia = ({ url, file , controls = true}) => {
   );
 };
 
-export default CardMedia;
+export default React.memo(CardMedia);

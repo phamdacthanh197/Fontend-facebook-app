@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import audioTone from './audio/pristine-609.mp3';
 import { socketContext } from './SocketProvider';
 import { createMsg } from './store/messengerSlice';
-import { setNotifies, updateNotify } from './store/notifySlice';
+import { updateNotify } from './store/notifySlice';
 import { updatePost } from './store/postSlice';
 import { updateUserDtl } from './store/userSlice';
 
@@ -29,13 +29,13 @@ const SocketClient = () => {
   //!connection
   useEffect(() => {
     socket.emit('joinUser', auth?.user?._id);
-    console.log('emit from Client', auth?.user?._id);
+    // console.log('emit from Client', auth?.user?._id);
   }, [socket, auth]);
 
   // !like Post
   useEffect(() => {
     socket.on('likeToClient', (newPost) => {
-      console.log(newPost);
+      // console.log(newPost);
       dispatch(updatePost({ feedPost: newPost }));
       dispatch(updatePost({ userPost: newPost }));
     });
@@ -45,7 +45,7 @@ const SocketClient = () => {
   //!Unlike Post
   useEffect(() => {
     socket.on('unLikeToClient', (newPost) => {
-      console.log(newPost);
+      // console.log(newPost);
       dispatch(updatePost({ feedPost: newPost }));
       dispatch(updatePost({ userPost: newPost }));
     });
@@ -57,7 +57,7 @@ const SocketClient = () => {
     socket.on('createCommentToClient', (newPost) => {
       dispatch(updatePost({ feedPost: newPost }));
       dispatch(updatePost({ userPost: newPost }));
-      console.log(newPost);
+      // console.log(newPost);
     });
     return () => socket.off('createCommentToClient');
   }, [socket, dispatch]);
@@ -73,7 +73,7 @@ const SocketClient = () => {
   //add friend
   useEffect(() => {
     socket.on('toggleFriendForClient', (newUser) => {
-      console.log(newUser);
+      // console.log(newUser);
       dispatch(updateUserDtl({ ...newUser.updateFriends, user: newUser.user }));
     });
     return () => socket.off('toggleFriendForClient');
@@ -82,7 +82,7 @@ const SocketClient = () => {
   // !Notifications
   useEffect(() => {
     socket.on('createNotifyToClient', (msg) => {
-      console.log(msg)
+      // console.log(msg)
       dispatch(updateNotify({ notify: msg }));
       audioRef.current.play();
       spawnNotification(msg.userInform.username + ' ' + msg.text, msg.userInform.avatar, msg.url, 'FACEBOOK CONNECT');
@@ -100,7 +100,7 @@ const SocketClient = () => {
   // !Messages
   useEffect(() => {
     socket.on('addMessageToClient', (msg) => {
-      console.log(msg);
+      // console.log(msg);
       audioRef.current.play();
       dispatch(createMsg({ message: msg }));
     });

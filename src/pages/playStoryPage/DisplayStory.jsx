@@ -9,7 +9,7 @@ import CardMedia from '~/components/story/CardMedia';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import TimeAgo from '~/components/TimeAgo';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const DisplayStory = () => {
   let params = (new URL(document.location)).searchParams;
@@ -84,7 +84,7 @@ const DisplayStory = () => {
         </Typography>
         {stories.map((story, index) => (
           <Box onClick={() => handleClick(story._id)} key={story._id + index} sx={{ py: 2, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: 1,cursor: "pointer" }}>
-            <Avatar src={`${URL}/assets/${story.user.picturePath}`} sx={{ height: '60px', width: '60px' }} />
+            <Avatar src={`${domainName}/assets/${story.user.picturePath}`} sx={{ height: '60px', width: '60px' }} />
             <Box>
               <Typography fontWeight="500">{story.user.firstName + ' ' + story.user.lastName}</Typography>
               <TimeAgo timestamp={story.updatedAt}/>
@@ -108,7 +108,7 @@ const DisplayStory = () => {
             {stories.map((story, index) => (
               <Box key={story._id} sx={{ position: 'relative', width: '100%', height: '85vh' }}>
                 {story.source !== '' ? (
-                  <CardMedia url={`${URL}/assets/${story.source}`} controls={true} />
+                  <CardMedia url={`${domainName}/assets/${story.source}`} controls={true} />
                 ) : (
                   <Box
                     className={story.background}
@@ -145,7 +145,7 @@ const DisplayStory = () => {
                     gap: 1,
                   }}
                 >
-                  <Avatar src={`${URL}/assets/${story.user.picturePath}`} />
+                  <Avatar src={`${domainName}/assets/${story.user.picturePath}`} />
                   <Typography sx={{ color: '#fff' }}>{story.user.firstName + ' ' + story.user.lastName}</Typography>
                 </Box>
               </Box>

@@ -13,7 +13,7 @@ import { setOpen } from '~/store/messengerSlice';
 import FlexBetween from './FlexBetween';
 import { getUserDetail } from '~/store/actions/userAction';
 import { getChatBox } from '~/store/actions/messageAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const FriendList = () => {
   console.log("friend list")
@@ -70,7 +70,7 @@ const FriendList = () => {
                 }}
               >
                 <Avatar
-                  src={`${URL}/assets/${friend.picturePath}`}
+                  src={`${domainName}/assets/${friend.picturePath}`}
                   sx={{
                     height: '28px',
                     width: '28px',

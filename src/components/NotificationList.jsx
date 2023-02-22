@@ -5,7 +5,7 @@ import { Avatar, Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useSelector } from 'react-redux';
 import TimeAgo from './TimeAgo';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const NotificationList = () => {
   const notifies = useSelector((state) => state.notify.notifies);
@@ -36,7 +36,7 @@ const NotificationList = () => {
         <Box  px={2} py={1} sx={{ display: 'flex',flexDirection: "column" ,gap: 1, height: '100vh' }}>
       {notifies?.map((notify, index) => (
           <Box key={notify._id + index} sx={{ display: 'flex' }}>
-            <Avatar src={`${URL}/assets/${notify?.user?.picturePath}`} sx={{ height: '56px', width: '56px' }} />
+            <Avatar src={`${domainName}/assets/${notify?.user?.picturePath}`} sx={{ height: '56px', width: '56px' }} />
             <Box pl={2}>
               <Typography>
                 <b>{notify.user.firstName + " " + notify.user.lastName}</b> {notify.text}: "{notify.content}"

@@ -5,20 +5,21 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import CloseIcon from '@mui/icons-material/Close';
 import LinearScaleIcon from '@mui/icons-material/LinearScale';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import FlexBetween from '~/components/FlexBetween';
 import logoHome from '~/assets/logo_home.png';
-import avatar from '~/assets/avatar.jpg';
 import { categories } from '~/assets/sidebar_img';
 import { appMenuList } from '~/utils/constant';
 import AcountMenu from '~/components/Header/AcountMenu';
+import { domainName } from '~/utils/fetchData';
 
 const StoryHeader = () => {
   const navigate = useNavigate();
   const [appMenu, setAppMenu] = React.useState(null);
   const [notification, setNotification] = React.useState(null);
   const [acount, setAcount] = React.useState(null);
-
+  const {auth: {user}} = useSelector(state => state)
   const handleClickAppMenu = (event) => {
     setAppMenu(event.currentTarget);
   };
@@ -101,7 +102,7 @@ const StoryHeader = () => {
             <NotificationsActiveIcon sx={{ fontSize: '28px' }} />
           </IconButton>
           <Avatar
-            src={avatar}
+            src={`${domainName}/assets/${user.picturePath}`}
             alt="avata image "
             sx={{
               cursor: 'pointer',

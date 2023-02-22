@@ -18,7 +18,7 @@ import NotificationList from '~/components/NotificationList';
 import MenuCard from '~/components/MenuCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotifies } from '~/store/actions/notifyAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const NavBar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -225,7 +225,7 @@ const NavBar = () => {
               </Badge>
             </IconButton>
             <Avatar
-              src={`${URL}/assets/${user.picturePath}`}
+              src={`${domainName}/assets/${user.picturePath}`}
               alt="avata image "
               sx={{
                 cursor: 'pointer',

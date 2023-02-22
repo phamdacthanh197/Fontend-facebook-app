@@ -11,7 +11,7 @@ import TimeAgo from '../TimeAgo';
 import { useNavigate } from 'react-router-dom';
 import Reply from '../comment/reply';
 import { socketContext } from '~/SocketProvider';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const Comment = ({ post }) => {
   console.log("comment")
@@ -65,7 +65,7 @@ const Comment = ({ post }) => {
         <ArrowDropDownIcon />
       </Box>
       <FlexBetween>
-        <Avatar src={`${URL}/assets/${auth.user.picturePath}`} sx={{ height: '32px', width: '32px' }} />
+        <Avatar src={`${domainName}/assets/${auth.user.picturePath}`} sx={{ height: '32px', width: '32px' }} />
         <InputBase
           autoFocus={true}
           id={`input${post._id}`}
@@ -87,7 +87,7 @@ const Comment = ({ post }) => {
       {post?.comments.map((comment,index) => (
         <Box key={comment._id} sx={{ display: 'flex',flexDirection: "column", mt: 1 }}>
           <Box sx={{ display: "flex"}}>
-            <Avatar src={`${URL}/assets/${comment?.user?.picturePath}`} sx={{ height: '32px', width: '32px' }} />
+            <Avatar src={`${domainName}/assets/${comment?.user?.picturePath}`} sx={{ height: '32px', width: '32px' }} />
             <Box ml={1}>
               <Box
                 sx={{

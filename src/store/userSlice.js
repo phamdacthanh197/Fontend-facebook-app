@@ -12,7 +12,7 @@ export const userSlice = createSlice({
       state.userDetail = action.payload.userDetail;
     },
     updateUserDtl: (state, action) => {
-      console.log(action.payload)
+      // console.log(action.payload)
       let indexOfElement = -1;
       state.userDetail.friends.forEach((item) => {
         if (item._id === action.payload._id || item._id === action.payload?.user?._id) {

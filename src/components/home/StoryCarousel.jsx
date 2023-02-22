@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 import CardMedia from '../story/CardMedia';
 import { getAllStories } from '~/store/actions/storyAction';
 
@@ -40,7 +40,7 @@ const StoryCarousel = () => {
 
   useEffect(() => {
     dispatch(getAllStories(auth));
-  }, []);
+  },[]);
   return (
     <Paper elevation={2} sx={{ width: '100%', height: '287px' }}>
       <Tabs
@@ -78,7 +78,7 @@ const StoryCarousel = () => {
             >
               <img
                 style={{ height: '70%', width: '100%' }}
-                src={`${URL}/assets/${auth.user.picturePath}`}
+                src={`${domainName}/assets/${auth.user.picturePath}`}
                 alt="avatar image"
               />
               <Avatar sx={{ backgroundColor: 'primary.main', transform: 'translateY(-12px)' }}>
@@ -108,7 +108,7 @@ const StoryCarousel = () => {
                 }}
               >
                 {story.source !== '' ? (
-                  <CardMedia url={`${URL}/assets/${story.source}`} controls={false}/>
+                  <CardMedia url={`${domainName}/assets/${story.source}`} controls={false}/>
                 ) : (
                   <Box className={story.background} sx={{ 
                     height: '100%', width: '100%' ,
@@ -140,7 +140,7 @@ const StoryCarousel = () => {
                   }}
                 >
                   <Avatar
-                    src={`${URL}/assets/${story.user.picturePath}`}
+                    src={`${domainName}/assets/${story.user.picturePath}`}
                     sx={{ backgroundColor: 'black' }}
                   ></Avatar>
                 </Avatar>

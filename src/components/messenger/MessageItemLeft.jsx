@@ -1,6 +1,6 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import React from 'react';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const MessageItemLeft = ({ message }) => {
   return (
@@ -12,7 +12,7 @@ const MessageItemLeft = ({ message }) => {
         my: 1,
       }}
     >
-      <Avatar src={`${URL}/assets/${message.sender.picturePath}`}/>
+      <Avatar src={`${domainName}/assets/${message.sender.picturePath}`}/>
       <Typography
         sx={{
           ml: 1,

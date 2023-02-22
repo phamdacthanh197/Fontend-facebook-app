@@ -20,7 +20,7 @@ import { shades } from '~/theme';
 import FlexBetween from '../FlexBetween';
 import CardMedia from '../story/CardMedia';
 import { createPost } from '~/store/actions/postAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const style = {
   borderRadius: '20px',
@@ -91,7 +91,7 @@ const CreatePost = () => {
   return (
     <Paper elevation={2} sx={{ height: '125px', width: '100%', my: 2 }}>
       <Box sx={{ height: '65px', widht: '100%', p: 2, display: 'flex' }}>
-        <Avatar src={`${URL}/assets/${user.picturePath}`} sx={{ width: '40px', height: '40px', cursor: 'pointer' }} />
+        <Avatar src={`${domainName}/assets/${user.picturePath}`} sx={{ width: '40px', height: '40px', cursor: 'pointer' }} />
         <Box
           onClick={handleOpen}
           placeholder={`what's on your mind ${user.firstName + " " + user.lastName}`}
@@ -177,7 +177,7 @@ const CreatePost = () => {
                   gap: 1,
                 }}
               >
-                <Avatar src={`${URL}/assets/${user.picturePath}`} sx={{ height: '50px', width: '50px' }} />
+                <Avatar src={`${domainName}/assets/${user.picturePath}`} sx={{ height: '50px', width: '50px' }} />
                 <Box>
                   <Typography variant="h5" fontWeight="500">
                     { user.firstName + " " + user.lastName}

@@ -1,6 +1,6 @@
 import { Avatar, Button, Divider, IconButton, Paper, Typography } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
-import React from 'react';
+import React, { useContext } from 'react';
 import FlexBetween from '~/components/FlexBetween';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,11 +13,13 @@ import Preview from '~/components/story/Preview';
 import TextCard from '~/components/story/TextCard';
 import PhotoCard from '~/components/story/PhotoCard';
 import { createTextStory, createVideoStory } from '~/store/actions/storyAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
+import { socketContext } from '~/SocketProvider';
 
 const SideBar = () => {
-  console.log("sideBar")
-  const { auth,story,socket } = useSelector(state => state)
+  console.log("sideBar story")
+  const { auth,story } = useSelector(state => state)
+  const socket = useContext(socketContext)
   const openEditText = useSelector(state => state.story.editText)
   const openEditPhotoOrVideo = useSelector(state => state.story.editPhotoOrVideo)
   const editPhotoOrVideoOpen = useSelector(state => state.story.editPhotoOrVideo)
@@ -62,7 +64,7 @@ const SideBar = () => {
             justifyContent: 'flex-start',
           }}
         >
-          <Avatar src={`${URL}/assets/${auth.user.picturePath}`} sx={{ height: '60px', width: '60px' }} />
+          <Avatar src={`${domainName}/assets/${auth.user.picturePath}`} sx={{ height: '60px', width: '60px' }} />
           <Typography variant="h5" fontWeight="450">
             {auth.user.firstName + " " + auth.user.lastName}
           </Typography>

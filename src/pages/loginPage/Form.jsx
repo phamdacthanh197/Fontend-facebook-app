@@ -12,7 +12,7 @@ import { setLogin } from '~/store/authSlice';
 import { setAlert } from '~/store/alertSlice';
 import { setModalOpen } from '~/store/modalSilce';
 import FlexBetween from '~/components/FlexBetween';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required('required'),
@@ -55,7 +55,7 @@ const Form = ({ isRegister }) => {
       formData.append(name, values[name]);
     }
     formData.append('picturePath', values.picture.name);
-    const savedUserResponse = await fetch(`${URL}/api/auth/register`, {
+    const savedUserResponse = await fetch(`${domainName}/api/auth/register`, {
       method: 'POST',
       body: formData,
     });
@@ -69,7 +69,7 @@ const Form = ({ isRegister }) => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch(`${URL}/api/auth/login`, {
+    const loggedInResponse = await fetch(`${domainName}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),

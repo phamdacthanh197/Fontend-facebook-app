@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { createComment, createReplyComment, deleteReplyOfComment, updateReplyComment } from '~/store/actions/commentAction';
 import FlexBetween from '../FlexBetween';
 import TimeAgo from '../TimeAgo';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 
 
@@ -51,7 +51,7 @@ const Reply = ({ comment, postId }) => {
       {comments.filter(item => item._id == comment._id)[0]?.reply?.map((comment, index) => (
         <Box key={comment._id + index} sx={{ display: 'flex', mt: 1 }}>
           <Avatar
-            src={`${URL}/assets/${comment?.user?.picturePath}`}
+            src={`${domainName}/assets/${comment?.user?.picturePath}`}
             sx={{ height: '32px', width: '32px' }}
           />
           <Box ml={1}>
@@ -95,7 +95,7 @@ const Reply = ({ comment, postId }) => {
         </Box>
       ))}
       <FlexBetween sx={{ width: '100%' }}>
-        <Avatar src={`${URL}/assets/${auth.user.picturePath}`} sx={{ height: '32px', width: '32px' }} />
+        <Avatar src={`${domainName}/assets/${auth.user.picturePath}`} sx={{ height: '32px', width: '32px' }} />
         <InputBase
           // autoFocus={true}
           id={`input${comment._id}`}

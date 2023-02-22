@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from '@mui/material';
 import { css, keyframes } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAlert } from '~/store/alertSlice';
-import { clear } from '@testing-library/user-event/dist/clear';
-
 
 const fadeOut = keyframes`
   0% {
@@ -15,13 +12,13 @@ const fadeOut = keyframes`
   }
 `;
 const AlertCusttom = () => {
-  const dispatch = useDispatch()
   const alertState = useSelector(state => state.alert)
   const [alert, setAlert] = useState({})
-  console.log("alert")
+  // console.log(alertState)
   useEffect(() => {
     setAlert(alertState)
     const timeId = setTimeout(() => {
+    // console.log("clear time ID")
     setAlert({})
     }, 2000);
     return () => clearTimeout(timeId)

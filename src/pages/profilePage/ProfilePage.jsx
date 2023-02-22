@@ -17,7 +17,7 @@ import CreatePost from '~/components/home/CreatePost';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserPost } from '~/store/actions/postAction';
 import { getUserDetail } from '~/store/actions/userAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const ProfilePage = () => {
   const { auth } = useSelector((state) => state);
@@ -66,7 +66,7 @@ const ProfilePage = () => {
           }}
         >
           <img
-            src={`${URL}/assets/${userDetail?.coverPhoto}`}
+            src={`${domainName}/assets/${userDetail?.coverPhoto}`}
             style={{
               position: 'absolute',
               height: '100%',
@@ -111,7 +111,7 @@ const ProfilePage = () => {
             }}
           >
             <Avatar
-              src={`${URL}/assets/${userDetail?.picturePath}`}
+              src={`${domainName}/assets/${userDetail?.picturePath}`}
               sx={{
                 height: '168px',
                 width: '168px',
@@ -137,7 +137,7 @@ const ProfilePage = () => {
               >
                 {userDetail?.friends?.slice(0, 8).map((friend, index) => (
                   <Avatar
-                    src={`${URL}/assets/${friend.picturePath}`}
+                    src={`${domainName}/assets/${friend.picturePath}`}
                     key={friend._id}
                     sx={{
                       transform: `translateX(${-10 * index}px)`,
@@ -304,7 +304,7 @@ const ProfilePage = () => {
                   <img
                     style={{ height: '121px', width: '100%' }}
                     key={post._id + index}
-                    src={`${URL}/assets/${post.source}`}
+                    src={`${domainName}/assets/${post.source}`}
                     alt="post"
                   />
                 ))}
@@ -341,7 +341,7 @@ const ProfilePage = () => {
                 <Box key={friend._id + index}>
                   <img
                     style={{ height: '121px', width: '100%' }}
-                    src={`${URL}/assets/${friend.picturePath}`}
+                    src={`${domainName}/assets/${friend.picturePath}`}
                     alt="frineds"
                   />
                   <Typography variant="body1" fontWeight="bold">

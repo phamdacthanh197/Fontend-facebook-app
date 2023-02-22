@@ -7,6 +7,8 @@ export const createNotify = ({msg, auth, socket }) => async (dispatch) => {
   try {
       const res = await postDataAPI(`notifies`, msg, auth.token);
       console.log(res.data.notify)
+      console.log(socket)
+      console.log (auth)
       // dispatch(updateNotify({notify: res.data.notify}))
 
       socket.emit('createNotify', {

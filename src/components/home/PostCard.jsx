@@ -20,7 +20,7 @@ import { likePost, unLikePost, deletePost } from '~/store/actions/postAction';
 import CardMedia from '../story/CardMedia';
 import { addAndRemvoceFriends } from '~/store/actions/userAction';
 import { socketContext } from '~/SocketProvider';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const PostCard = ({ postDetail, pathname }) => {
   console.log('PostCard');
@@ -39,7 +39,7 @@ const PostCard = ({ postDetail, pathname }) => {
     <Paper elevation={2} sx={{ height: 'auto', width: '100%', p: 2, mb: 2 }}>
       <FlexBetween>
         <FlexBetween>
-          <Avatar src={`${URL}/assets/${postDetail.user.picturePath}`} />
+          <Avatar src={`${domainName}/assets/${postDetail.user.picturePath}`} />
           <Box ml={1}>
             <Typography fontWeight="500">{postDetail.user.firstName + ' ' + postDetail.user.lastName}</Typography>
             <FlexBetween gap={1}>
@@ -65,7 +65,7 @@ const PostCard = ({ postDetail, pathname }) => {
       </FlexBetween>
       <Box py={1}>{postDetail.description}</Box>
       <Box sx={{ width: '100%', height: '100%' }}>
-        <CardMedia url={`${URL}/assets/${postDetail.source}`} />
+        <CardMedia url={`${domainName}/assets/${postDetail.source}`} />
       </Box>
       <FlexBetween py={1}>
         <FlexBetween>

@@ -8,7 +8,7 @@ import { Box } from '@mui/system';
 import Divider from '@mui/material/Divider';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 
 const SideBar = () => {
@@ -46,7 +46,7 @@ const SideBar = () => {
             }}
           >
             <Avatar
-              src={`${URL}/assets/${user.picturePath}`}
+              src={`${domainName}/assets/${user.picturePath}`}
               sx={{
                 height: '28px',
                 width: '28px',

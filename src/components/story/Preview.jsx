@@ -1,43 +1,40 @@
 import { Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMediaQuery } from '@mui/material';
 import CardMedia from './CardMedia';
-import { makingFile } from '~/store/storySlice';
+import { getFile } from '~/store/storySlice';
 
 const Preview = ({ width, hide, getPhotoVideo }) => {
   console.log("Preview")
   const dispatch = useDispatch();
-  const [file, setFile] = useState();
+  const fileName = useSelector(state => state.story.file)
+  // console.log(fileName)
+  // const [file, setFile] = useState();
   const ref = useRef();
   const handleClick = (getPhotoVideo) => {
     if (getPhotoVideo) {
       ref.current?.click();
     }
   };
-  useEffect(() => {
-    return () => {
-      file && URL.revokeObjectURL(file.preview);
-    };
-  }, [file]);
 
   const handleChange = (e) => {
-    const file = e.target.files[0];
-    if(file) {
-      file.preview = URL.createObjectURL(file);
-      setFile(file);
-      dispatch(makingFile({file: file}))
+    const f = e.target.files[0];
+    if(f) {
+      f.preview = URL.createObjectURL(f);
+      // setFile(f)
+      dispatch(getFile({file: f}))
     }
   };
 
-  const isNonMobile = useMediaQuery('(min-width:900px)');
   const background = useSelector((state) => state.story.className);
   const text = useSelector((state) => state.story.text);
-  // const [backgroundColor, setBackgroundColor] = useState(background);
-  // useEffect(() => {
-  //   setBackgroundColor(background);
-  // }, [background]);
+
+  useEffect(() => {
+    return () => {
+      fileName && URL.revokeObjectURL(fileName.preview);
+    };
+  }, [fileName]);
 
   return (
     <>
@@ -103,7 +100,7 @@ const Preview = ({ width, hide, getPhotoVideo }) => {
                 display: 'none',
               }}
             />
-            <CardMedia file={file}  />
+           { getPhotoVideo && <CardMedia file={fileName}  />}
           </Box>
         </Box>
       </Paper>

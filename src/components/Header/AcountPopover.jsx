@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMode } from "~/store/authSlice"
 import { useNavigate } from 'react-router-dom';
 import { logout } from '~/store/actions/logOutAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const AcountPopover = ({ data: { data, icon, text }, setHistory, handleClloseAcount }) => {
   const { auth: { user }} = useSelector(state => state)
@@ -35,7 +35,7 @@ const AcountPopover = ({ data: { data, icon, text }, setHistory, handleClloseAco
       { !isChildren ? (
         <Paper elevation={4} sx={{ widht: '100%', height: '112px', mb: 2 }}>
           <Box onClick={() => {navigate("/profile");handleClloseAcount()}} sx={{ display: 'flex', alignItems: 'center', px: 1, py: 2, cursor: "pointer" }}>
-            <Avatar src={`${URL}/assets/${user.picturePath}`} />
+            <Avatar src={`${domainName}/assets/${user.picturePath}`} />
             <Typography sx={{ ml: 1 }} variant="h5" fontWeight="bold">
               {user.firstName + " " + user.lastName}
             </Typography>

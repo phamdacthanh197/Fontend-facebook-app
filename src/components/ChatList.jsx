@@ -11,12 +11,12 @@ import FlexBetween from '~/components/FlexBetween';
 import TimeAgo from './TimeAgo';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChatBox, getConversation } from '~/store/actions/messageAction';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 const ChatList = ({ flex, handleClloseMessenger }) => {
   const auth = useSelector((state) => state.auth);
   const conversations = useSelector((state) => state.messenger.conversations);
-  console.log(conversations);
+  // console.log(conversations);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (friend) => {
@@ -78,7 +78,7 @@ const ChatList = ({ flex, handleClloseMessenger }) => {
             {conversations?.map((conversation, index) => (
               <Box key={conversation?._id + index + Math.random()} onClick={() => handleClick(conversation?.recipients[0])} sx={{ display: 'flex', gap: 1, cursor: "pointer" }}>
                 <Avatar
-                  src={`${URL}/assets/${conversation?.recipients[0]?.picturePath}`}
+                  src={`${domainName}/assets/${conversation?.recipients[0]?.picturePath}`}
                   sx={{ height: '56px', width: '56px' }}
                 />
                 <Box pl={2}>
@@ -179,7 +179,7 @@ const ChatList = ({ flex, handleClloseMessenger }) => {
             {conversations?.map((conversation, index) => (
               <Box key={conversation?._id + index + Math.random()} onClick={() => handleClick(conversation?.recipients[0])} sx={{ display: 'flex', gap: 1, cursor: "pointer" }}>
                 <Avatar
-                  src={`${URL}/assets/${conversation?.recipients[0]?.picturePath}`}
+                  src={`${domainName}/assets/${conversation?.recipients[0]?.picturePath}`}
                   sx={{ height: '56px', width: '56px' }}
                 />
                 <Box pl={2} sx={{ display: {md:"block", xs: "none"}}}>

@@ -10,7 +10,6 @@ import SocketProvider from './SocketProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
   <Provider store={store}>
     <PersitStore>
       <SocketProvider>
@@ -18,5 +17,4 @@ root.render(
       </SocketProvider>
     </PersitStore>
   </Provider>,
-  // </React.StrictMode>
 );

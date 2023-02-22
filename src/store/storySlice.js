@@ -23,6 +23,9 @@ export const storySlice = createSlice({
     setText: (state, action) => {
       state.text = action.payload;
     },
+    updateStory: (state, action) => {
+      state.stories.unshift(action.payload.story)
+    },
     setEditText: (state, action) => {
       if (state.editPhotoOrVideo) {
         state.editText = false;
@@ -30,7 +33,7 @@ export const storySlice = createSlice({
         state.editText = !state.editText;
       }
     },
-    makingFile: (state, action) => {
+    getFile: (state, action) => {
       state.file = action.payload.file
     },
     setEditPhotoOrVideo: (state, action) => {
@@ -49,5 +52,5 @@ export const storySlice = createSlice({
   },
 });
 
-export const { setClassName, setText, setEditText, setEditPhotoOrVideo, setFilepPreview, makingFile,setAllStories, resetStory } = storySlice.actions;
+export const { setClassName, setText, setEditText, setEditPhotoOrVideo, setFilepPreview, getFile,setAllStories, resetStory, updateStory } = storySlice.actions;
 export default storySlice.reducer;

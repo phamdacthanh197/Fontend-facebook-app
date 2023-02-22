@@ -21,7 +21,7 @@ import MessageItemLeft from './MessageItemLeft';
 import MessageItemRight from './MessageItemRight';
 import { createMessage } from '~/store/actions/messageAction';
 import { socketContext } from '~/SocketProvider';
-import { URL } from '~/utils/fetchData';
+import { domainName } from '~/utils/fetchData';
 
 
 const MessengerCard = ({ flex }) => {
@@ -31,7 +31,7 @@ const MessengerCard = ({ flex }) => {
   const openMessengerCard = useSelector((state) => state.messenger.open);
   const friend = useSelector((state) => state.user.friendDetail);
   const messages = useSelector((state) => state.messenger.messages);
-  console.log(messages);
+  // console.log(messages);
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const handleClick = () => dispatch(setOpen());
@@ -75,7 +75,7 @@ const MessengerCard = ({ flex }) => {
             <FlexBetween>
               <FlexBetween>
                 <Avatar
-                  src={`${URL}/assets/${friend?.picturePath}`}
+                  src={`${domainName}/assets/${friend?.picturePath}`}
                   sx={{ height: '32px', width: '32px' }}
                 />
                 <Box ml={1}>
@@ -118,7 +118,7 @@ const MessengerCard = ({ flex }) => {
               }}
             >
               <Avatar
-                src={`${URL}/assets/${friend?.picturePath}`}
+                src={`${domainName}/assets/${friend?.picturePath}`}
                 sx={{ height: '60px', width: '60px' }}
               />
               <Typography variant="h5" fontWeight="500">
@@ -195,7 +195,7 @@ const MessengerCard = ({ flex }) => {
             <FlexBetween>
               <FlexBetween>
                 <Avatar
-                  src={`${URL}/assets/${friend?.picturePath}`}
+                  src={`${domainName}/assets/${friend?.picturePath}`}
                   sx={{ height: '32px', width: '32px' }}
                 />
                 <Box ml={1}>
@@ -236,7 +236,7 @@ const MessengerCard = ({ flex }) => {
               }}
             >
               <Avatar
-                src={`${URL}/assets/${friend?.picturePath}`}
+                src={`${domainName}/assets/${friend?.picturePath}`}
                 sx={{ height: '60px', width: '60px' }}
               />
               <Typography variant="h5" fontWeight="500">
