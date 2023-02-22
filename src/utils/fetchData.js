@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const domainName = "http://localhost:3001"
+export const domainName = "https://facebook-app.herokuapp.com"
 
 export const getDataAPI = async (url,token) => {
     const res = await axios.get(`${domainName}/api/${url}`,{
