@@ -22,7 +22,7 @@ import MessageItemRight from './MessageItemRight';
 import { createMessage } from '~/store/actions/messageAction';
 import { socketContext } from '~/SocketProvider';
 import { domainName } from '~/utils/fetchData';
-
+import defaultImage from "~/assets/logo_home.png"
 
 const MessengerCard = ({ flex }) => {
   const socket = useContext(socketContext);
@@ -31,7 +31,7 @@ const MessengerCard = ({ flex }) => {
   const openMessengerCard = useSelector((state) => state.messenger.open);
   const friend = useSelector((state) => state.user.friendDetail);
   const messages = useSelector((state) => state.messenger.messages);
-  // console.log(messages);
+  // console.log(friend);
   const [text, setText] = useState('');
   const dispatch = useDispatch();
   const handleClick = () => dispatch(setOpen());
@@ -194,13 +194,17 @@ const MessengerCard = ({ flex }) => {
           >
             <FlexBetween>
               <FlexBetween>
-                <Avatar
-                  src={`${domainName}/assets/${friend?.picturePath}`}
+                {friend?._id ? <Avatar
+                  src={`${domainName}/assets/${friend?.picturePath}`} 
                   sx={{ height: '32px', width: '32px' }}
-                />
+                /> :
+                <Avatar
+                  src={`${domainName}/assets/${auth.user.picturePath}`} 
+                  sx={{ height: '32px', width: '32px' }}
+                />}
                 <Box ml={1}>
                   <Typography variant="h5" fontWeight="500">
-                    {friend?.firstName + ' ' + friend?.lastName}
+                    {(friend?.firstName || auth.user.firstName) + ' ' + (friend?.lastName || auth.user.lastName)} 
                   </Typography>
                   <Typography variant="body2">Active now</Typography>
                 </Box>
@@ -235,16 +239,21 @@ const MessengerCard = ({ flex }) => {
                 gap: '4px',
               }}
             >
+              {friend?._id ? <Avatar
+                  src={`${domainName}/assets/${friend?.picturePath}`} 
+                  sx={{ height: '60px', width: '60px' }}
+                /> :
               <Avatar
-                src={`${domainName}/assets/${friend?.picturePath}`}
+                src={`${domainName}/assets/${auth.user.picturePath}`}
                 sx={{ height: '60px', width: '60px' }}
-              />
+              />}
               <Typography variant="h5" fontWeight="500">
-                {friend?.firstName + ' ' + friend?.lastName}
+              {(friend?.firstName || auth.user.firstName) + ' ' + (friend?.lastName || auth.user.lastName)} 
+
               </Typography>
               <Typography variant="body2">Facebook</Typography>
               <Typography variant="body2">You are friend on facebook</Typography>
-              <Typography variant="body2">Live in {friend?.location} Viet Nam</Typography>
+              <Typography variant="body2">Live in {friend?.location || auth.user.location} Viet Nam</Typography>
             </Box>
             <Box>
               {messages?.map((message, index) => (

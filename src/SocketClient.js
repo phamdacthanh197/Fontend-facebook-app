@@ -90,13 +90,6 @@ const SocketClient = () => {
     return () => socket.off('createNotifyToClient');
   }, [socket, dispatch]);
 
-  // useEffect(() => {
-  //   socket.on('removeNotifyToClient', (msg) => {
-  //     dispatch({ type: NOTIFY_TYPES.REMOVE_NOTIFY, payload: msg });
-  //   });
-  //   return () => socket.off('removeNotifyToClient');
-  // }, [socket, dispatch]);
-
   // !Messages
   useEffect(() => {
     socket.on('addMessageToClient', (msg) => {
